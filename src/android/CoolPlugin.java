@@ -19,6 +19,27 @@ import com.honeywell.scanintent.ScanIntent;
 
 
 public class CoolPlugin extends CordovaPlugin {
+    public static final int REQUEST_CODE = 0x0ba7c0de;
+
+    private static final String SCAN = "scan";
+    private static final String ENCODE = "encode";
+    private static final String CANCELLED = "cancelled";
+    private static final String FORMAT = "format";
+    private static final String TEXT = "text";
+    private static final String DATA = "data";
+    private static final String TYPE = "type";
+    private static final String SCAN_INTENT = "com.google.zxing.client.android.SCAN";
+    private static final String ENCODE_DATA = "ENCODE_DATA";
+    private static final String ENCODE_TYPE = "ENCODE_TYPE";
+    private static final String ENCODE_INTENT = "com.phonegap.plugins.barcodescanner.ENCODE";
+    private static final String TEXT_TYPE = "TEXT_TYPE";
+    private static final String EMAIL_TYPE = "EMAIL_TYPE";
+    private static final String PHONE_TYPE = "PHONE_TYPE";
+    private static final String SMS_TYPE = "SMS_TYPE";
+
+    private static final String LOG_TAG = "BarcodeScanner";
+
+    private CallbackContext callbackContext;
 
     /**
      * Constructor.
@@ -77,23 +98,41 @@ public class CoolPlugin extends CordovaPlugin {
 		SCAN_MODE_SHARE_BY_EMAIL = 4;
 		SCAN_MODE_RESULT_AS_URI = 5;*/
 		
-		this.startActivityForResult(intentScan, 5);
+		this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 5);
     }
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if (resultCode == ScanIntent.SCAN_RESULT_SUCCESSED) {
-			String data = intent.getStringExtra(ScanIntent.EXTRA_RESULT_BARCODE_DATA);
-			int format = intent.getIntExtra(
-					ScanIntent.EXTRA_RESULT_BARCODE_FORMAT, 0);
-		
-			barcodeData.setText(ScanIntent.EXTRA_RESULT_BARCODE_DATA+ ": " + data + "\r\n" + ScanIntent.EXTRA_RESULT_BARCODE_FORMAT + ": " + format);
-		}
-		else
-			barcodeData.setText(R.string.scan_failed);
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put(TEXT, intent.getStringExtra(ScanIntent.EXTRA_RESULT_BARCODE_DATA));
+                obj.put(FORMAT, intent.getStringExtra(ScanIntent.EXTRA_RESULT_BARCODE_FORMAT, 0));
+                obj.put(CANCELLED, false);
+            } catch (JSONException e) {
+                Log.d(LOG_TAG, "This should never happen");
+            }
+            //this.success(new PluginResult(PluginResult.Status.OK, obj), this.callback);
+            this.callbackContext.success(obj);
+        } else if (resultCode == ScanIntent.SCAN_RESULT_FAILED) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put(TEXT, "");
+                obj.put(FORMAT, "");
+                obj.put(CANCELLED, true);
+            } catch (JSONException e) {
+                Log.d(LOG_TAG, "This should never happen");
+            }
+            //this.success(new PluginResult(PluginResult.Status.OK, obj), this.callback);
+            this.callbackContext.success(obj);
+        } else {
+            //this.error(new PluginResult(PluginResult.Status.ERROR), this.callback);
+            this.callbackContext.error("Unexpected error");
+        }
 	}
 
     public void encode(String type, String data) {
+    	/*
         Intent intentEncode = new Intent(ENCODE_INTENT);
         intentEncode.putExtra(ENCODE_TYPE, type);
         intentEncode.putExtra(ENCODE_DATA, data);
@@ -101,5 +140,6 @@ public class CoolPlugin extends CordovaPlugin {
         intentEncode.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 
         this.cordova.getActivity().startActivity(intentEncode);
+        */
     }
 }
