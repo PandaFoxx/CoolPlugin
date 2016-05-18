@@ -1,6 +1,6 @@
 {
     "version": "0.1",
-    "name": "com.letsap.plugins",
+    "name": "com.matd.coolplugin",
     "cordova_name": "Cool Plugin",
     "description": "Cool Plugin",
     "license": "Apache 2.0",
