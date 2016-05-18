@@ -49,6 +49,13 @@
             </activity>
         </config-file>
 		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.FLASHLIGHT" />
+            <!-- Not required to allow users to work around this -->
+            <uses-feature android:name="android.hardware.camera" android:required="false" />
+        </config-file>
+		
         <source-file src="src/android/CoolPlugin.java" target-dir="src/" />
 		<source-file src="src/android/libs/d7800.jar" target-dir="libs/" />
 		<source-file src="src/android/libs/honeywell.jar" target-dir="libs/" />
