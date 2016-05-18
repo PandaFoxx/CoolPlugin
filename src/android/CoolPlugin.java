@@ -89,7 +89,7 @@ public class CoolPlugin extends CordovaPlugin {
 
 		int loadmode = 0;
 
-		intentScan.putExtra("scan_mode", ScanIntent.SCAN_MODE_RESULT_AS_URI);
+		intentScan.putExtra("scan_mode", ScanIntent.SCAN_MODE_SHOW_NO_RESULT);
 
 /*		SCAN_MODE_SHOW_NO_RESULT = 0;
 		SCAN_MODE_SHOW_RESULT_UI = 1;	
@@ -99,6 +99,7 @@ public class CoolPlugin extends CordovaPlugin {
 		SCAN_MODE_RESULT_AS_URI = 5;*/
 		
 		this.startActivityForResult(intentScan, 0);
+		//this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 0);
     }
 
 	@Override
