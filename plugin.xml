@@ -52,9 +52,8 @@
         <source-file src="src/android/CoolPlugin.java" target-dir="src/" />
 		<source-file src="src/android/libs/d7800.jar" target-dir="libs/" />
 		<source-file src="src/android/libs/honeywell.jar" target-dir="libs/" />
-		<source-file src="src/android/libs/com.google.zxing.client.android.captureactivity.jar" target-dir="libs"/>
 		
-		        <source-file src="src/android/LibraryProject/res/drawable/launcher_icon.png" target-dir="res/drawable"/>
+		<source-file src="src/android/LibraryProject/res/drawable/launcher_icon.png" target-dir="res/drawable"/>
         <source-file src="src/android/LibraryProject/res/drawable/share_via_barcode.png" target-dir="res/drawable"/>
         <source-file src="src/android/LibraryProject/res/drawable/shopper_icon.png" target-dir="res/drawable"/>
         <source-file src="src/android/LibraryProject/res/drawable-hdpi/launcher_icon.png" target-dir="res/drawable-hdpi"/>
