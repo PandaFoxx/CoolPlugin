@@ -109,8 +109,8 @@ public class CoolPlugin extends CordovaPlugin {
 		if (resultCode == ScanIntent.SCAN_RESULT_SUCCESSED) {
             JSONObject obj = new JSONObject();
             try {
-                obj.put(TEXT, intent.getStringExtra(ScanIntent.EXTRA_RESULT_BARCODE_DATA));
-                obj.put(FORMAT, intent.getStringExtra(ScanIntent.EXTRA_RESULT_BARCODE_FORMAT, 0));
+            	obj.put(TEXT, intent.getStringExtra("SCAN_RESULT"));
+                obj.put(FORMAT, intent.getStringExtra("SCAN_RESULT_FORMAT"));
                 obj.put(CANCELLED, false);
             } catch (JSONException e) {
                 Log.d(LOG_TAG, "This should never happen");
