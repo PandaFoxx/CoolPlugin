@@ -98,7 +98,7 @@ public class CoolPlugin extends CordovaPlugin {
 		SCAN_MODE_SHARE_BY_EMAIL = 4;
 		SCAN_MODE_RESULT_AS_URI = 5;*/
 		
-		this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 5);
+		this.startActivityForResult(intentScan, 5);
     }
 
 	@Override
