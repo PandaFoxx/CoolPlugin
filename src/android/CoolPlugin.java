@@ -101,7 +101,7 @@ public class CoolPlugin extends CordovaPlugin {
 		intentScan.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 		
 		//this.cordova.startActivityForResult(intentScan, 0);
-		this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 0);
+		this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 5);
     }
 
 	@Override
