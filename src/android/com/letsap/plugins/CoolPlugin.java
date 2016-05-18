@@ -1,4 +1,4 @@
-//package src.android;
+package com.letsap.plugins;
 
 import org.json.JSONArray;
 import org.json.JSONException;
