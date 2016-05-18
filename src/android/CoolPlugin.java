@@ -31,13 +31,13 @@ public class CoolPlugin extends CordovaPlugin {
     private static final String SCAN_INTENT = "com.google.zxing.client.android.SCAN";
     private static final String ENCODE_DATA = "ENCODE_DATA";
     private static final String ENCODE_TYPE = "ENCODE_TYPE";
-    private static final String ENCODE_INTENT = "com.phonegap.plugins.barcodescanner.ENCODE";
+    private static final String ENCODE_INTENT = "CoolPlugin.ENCODE";
     private static final String TEXT_TYPE = "TEXT_TYPE";
     private static final String EMAIL_TYPE = "EMAIL_TYPE";
     private static final String PHONE_TYPE = "PHONE_TYPE";
     private static final String SMS_TYPE = "SMS_TYPE";
 
-    private static final String LOG_TAG = "BarcodeScanner";
+    private static final String LOG_TAG = "CoolPlugin";
 
     private CallbackContext callbackContext;
 
@@ -98,7 +98,9 @@ public class CoolPlugin extends CordovaPlugin {
 		SCAN_MODE_SHARE_BY_EMAIL = 4;
 		SCAN_MODE_RESULT_AS_URI = 5;*/
 		
-		this.startActivityForResult(intentScan, 0);
+		intentScan.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+		
+		this.cordova.startActivityForResult(intentScan, 0);
 		//this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, 0);
     }
 
@@ -133,7 +135,6 @@ public class CoolPlugin extends CordovaPlugin {
 	}
 
     public void encode(String type, String data) {
-    	/*
         Intent intentEncode = new Intent(ENCODE_INTENT);
         intentEncode.putExtra(ENCODE_TYPE, type);
         intentEncode.putExtra(ENCODE_DATA, data);
@@ -141,6 +142,5 @@ public class CoolPlugin extends CordovaPlugin {
         intentEncode.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
 
         this.cordova.getActivity().startActivity(intentEncode);
-        */
     }
 }
